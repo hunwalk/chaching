@@ -41,7 +41,7 @@ class Curl
 			CURLOPT_TIMEOUT 		=> 30,
 			CURLOPT_HEADER 			=> TRUE,
 			CURLOPT_RETURNTRANSFER 	=> TRUE,
-			CURLOPT_USERAGENT 		=> 'chaching-php-' . Chaching::VERSION
+			CURLOPT_USERAGENT 		=> 'chaching-php-' . Chaching::VERSION . Chaching::EDITION
 		] + $custom_options;
 
 		$ch = curl_init();

@@ -21,7 +21,7 @@ use Chaching\Exceptions\InvalidOptionsException;
  */
 class Chaching
 {
-    const EDITION = 'complex';
+    const EDITION = 'basic';
     const VERSION = '0.21.0';
 
     const CARDPAY = 'cardpay';
