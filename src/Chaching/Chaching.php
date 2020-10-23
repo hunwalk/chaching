@@ -21,7 +21,8 @@ use Chaching\Exceptions\InvalidOptionsException;
  */
 class Chaching
 {
-    const VERSION = '0.20.1';
+    const EDITION = 'complex';
+    const VERSION = '0.21.0';
 
     const CARDPAY = 'cardpay';
     const SPOROPAY = 'sporopay';
@@ -32,6 +33,7 @@ class Chaching
     const PAYPAL = 'paypal';
     const GPWEBPAY = 'gpwebpay';
     const ITERMINAL = 'iterminal';
+
 
     const PRODUCTION = 'production';
     const SANDBOX = 'sandbox';
