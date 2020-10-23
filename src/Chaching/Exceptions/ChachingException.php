@@ -12,6 +12,10 @@
 namespace Chaching\Exceptions;
 
 
+/**
+ * Class ChachingException
+ * @package Chaching\Exceptions
+ */
 class ChachingException extends \RuntimeException
 {
 }

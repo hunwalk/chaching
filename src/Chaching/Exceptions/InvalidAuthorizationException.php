@@ -12,6 +12,10 @@
 namespace Chaching\Exceptions;
 
 
+/**
+ * Class InvalidAuthorizationException
+ * @package Chaching\Exceptions
+ */
 class InvalidAuthorizationException extends ChachingException
 {
 }
