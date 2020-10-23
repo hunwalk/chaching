@@ -10,3 +10,10 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+# Composer generated stuff
+/vendor
+composer.lock
+
+# IDE generated stuff
+.idea
