@@ -1,5 +1,5 @@
 {
-    "name": "backbone/chaching",
+    "name": "hunwalk/chaching",
     "type": "library",
     "version": "0.21.0",
     "license": "MIT",
@@ -27,6 +27,10 @@
         {
             "name": "Palo Sopko",
             "email": "pavol.sopko@backbone.sk"
+        },
+        {
+            "name": "Gergely Horvath",
+            "email": "gergely@cstudios.sk"
         }
     ],
     "require": {
