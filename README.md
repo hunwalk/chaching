@@ -1,3 +1,10 @@
+# IMPORTANT
+This project is originated from https://github.com/backbonesk/chaching
+
+We cloned this project because of some major changes we could not solve with just forking.
+
+Shout out to backbonesk for this amazing lib.
+
 # chaching
 
 Simple and unified object-oriented library written in PHP for e-commerce services offered by Slovak banks and financial institutions.
