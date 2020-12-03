@@ -1,7 +1,7 @@
 {
     "name": "hunwalk/chaching",
     "type": "library",
-    "version": "0.21.0",
+    "version": "0.21.2",
     "license": "MIT",
     "description": "Universal payment library for banking services in Slovakia",
     "keywords": [
