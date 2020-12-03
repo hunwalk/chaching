@@ -103,7 +103,7 @@ class Chaching
             throw new \Exception("'{$class}' should be extended from ".Driver::class);
         }
 
-        self::$_3rd_party_payment_drivers[] = [$handle => $class];
+        self::$_3rd_party_payment_drivers[$handle] = $class;
     }
 
     /**
