@@ -99,7 +99,7 @@ class Chaching
         if (!class_exists($class))
             throw new \Exception('Class not found: '.$class);
 
-        if (is_a($class, Driver::class, true)){
+        if (!is_a($class, Driver::class, true)){
             throw new \Exception("'{$class}' should be extended from ".Driver::class);
         }
 
