@@ -188,6 +188,30 @@ Newest addition to the different services provided by supported payment institut
 
 PayPal deserves an honourable mention here: Please, set the instant payment notification's (IPNs) character encoding to UTF-8. Go to your Paypal profile, click "My selling tools" in the sidebar, scroll to the bottom and click "PayPal button language encoding", click "More options" and set the encoding to UTF-8. It will save you so much pain.
 
+### Support your own drivers
+###### Extending chaching
+
+I've added a support method to this lib. All you have to do is at the beginning of your app,
+add the drivers. Like so:
+
+```php
+$handle = 'yourdriverhandle';
+$class = App\Components\Driver\YourDriver::class;
+
+\Chaching\Chaching::supportDriver($class, $handle);
+```
+
+Then you can access it like this: 
+```php
+use Chaching\Chaching;
+
+$driver        = 'yourdriverhandle';
+$authorization = [ 'merchant_id', 'password' ];
+$options       = [];
+
+$chaching = new Chaching($driver, $authorization, $options);
+```
+
 ## Contributing
 1. Check for open issues or open a new issue for a feature request or a bug.
 2. Fork the repository and make your changes to the master branch (or branch off of it).

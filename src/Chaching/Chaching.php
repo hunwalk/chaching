@@ -33,7 +33,7 @@ class Chaching
     const PAYPAL = 'paypal';
     const GPWEBPAY = 'gpwebpay';
     const ITERMINAL = 'iterminal';
-
+    const HOMECREDIT = 'homecredit';
 
     const PRODUCTION = 'production';
     const SANDBOX = 'sandbox';
@@ -41,17 +41,12 @@ class Chaching
     /**
      * @var string[]
      */
-    private $payment_drivers = [
-        self::SPOROPAY => 'SLSPSporoPay',
-        self::CARDPAY => 'TBCardPay',
-        self::TATRAPAY => 'TBTatraPay',
-        self::TRUSTPAY => 'TrustPay',
-        self::EPLATBY => 'VUBePlatby',
-        self::ECARD => 'VUBeCard',
-        self::PAYPAL => 'PayPal',
-        self::GPWEBPAY => 'GPwebpay',
-        self::ITERMINAL => 'PBiTerminal'
-    ];
+    private $_payment_drivers = [];
+
+    /**
+     * @var array
+     */
+    private static $_3rd_party_payment_drivers = [];
 
     /**
      * Create object to work with payments via specified driver.
@@ -63,23 +58,73 @@ class Chaching
      */
     public function __construct($driver, array $authorization, array $options = [])
     {
+        $this->_payment_drivers = $this->getNativelySupportedPaymentDrivers();
 
-        if (!is_string($driver) or !isset($this->payment_drivers[$driver]))
+        if (!is_string($driver)){
             throw new InvalidOptionsException(sprintf(
-                "Invalid driver '%s' in use. Valid drivers are '%s'.",
-                $driver, implode("', '", array_keys($this->payment_drivers))
+                "Driver '%s' should be string.",
+                $driver
             ));
+        }
 
-        $driver = '\\Chaching\\Drivers\\' . $this->payment_drivers[$driver];
+        if (!isset($this->_payment_drivers[$driver])){
+
+            if (!isset(self::$_3rd_party_payment_drivers[$driver]))
+                throw new InvalidOptionsException(sprintf(
+                    "Invalid driver '%s' in use. Valid drivers are '%s'.",
+                    $driver, implode("', '", array_keys($this->_payment_drivers))
+                ));
+
+            //using 3rd party driver here
+            $driver = self::$_3rd_party_payment_drivers[$driver];
+
+        }else{
+
+            $driver = '\\Chaching\\Drivers\\' . $this->_payment_drivers[$driver];
+
+        }
 
         if (!class_exists($driver))
             throw new InvalidOptionsException(sprintf(
                 "[internal] Requested driver '%s' does not appear to have " .
                 "class definition associated. Valid drivers are %s",
-                $driver, implode("', '", array_keys($this->payment_drivers))
+                $driver, implode("', '", array_keys($this->_payment_drivers))
             ));
 
         $this->driver = new $driver($authorization, $options);
+    }
+
+    public static function supportDriver($class, $handle)
+    {
+        if (!class_exists($class))
+            throw new \Exception('Class not found: '.$class);
+
+        if (!$class instanceof Driver){
+            throw new \Exception("'{$class}' should be extended from ".Driver::class);
+        }
+
+        self::$_3rd_party_payment_drivers[] = [$handle => $class];
+    }
+
+    /**
+     * Defines the natively supported payment drivers by this package.
+     * Gets loaded into the payment drivers during initialization
+     * @return string[]
+     */
+    final public function getNativelySupportedPaymentDrivers()
+    {
+        return [
+            self::SPOROPAY => 'SLSPSporoPay',
+            self::CARDPAY => 'TBCardPay',
+            self::TATRAPAY => 'TBTatraPay',
+            self::TRUSTPAY => 'TrustPay',
+            self::EPLATBY => 'VUBePlatby',
+            self::ECARD => 'VUBeCard',
+            self::PAYPAL => 'PayPal',
+            self::GPWEBPAY => 'GPwebpay',
+            self::ITERMINAL => 'PBiTerminal',
+            self::HOMECREDIT => 'HomeCredit'
+        ];
     }
 
     public function __call($method, $arguments)
