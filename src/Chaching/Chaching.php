@@ -33,7 +33,6 @@ class Chaching
     const PAYPAL = 'paypal';
     const GPWEBPAY = 'gpwebpay';
     const ITERMINAL = 'iterminal';
-    const HOMECREDIT = 'homecredit';
 
     const PRODUCTION = 'production';
     const SANDBOX = 'sandbox';
@@ -123,7 +122,6 @@ class Chaching
             self::PAYPAL => 'PayPal',
             self::GPWEBPAY => 'GPwebpay',
             self::ITERMINAL => 'PBiTerminal',
-            self::HOMECREDIT => 'HomeCredit'
         ];
     }
 
